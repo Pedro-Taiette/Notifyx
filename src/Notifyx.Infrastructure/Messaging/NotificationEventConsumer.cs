@@ -1,5 +1,5 @@
 ﻿namespace Notifyx.Infrastructure.Messaging;
 
-internal class NotificationEventConsumer
+public class NotificationEventConsumer
 {
 }

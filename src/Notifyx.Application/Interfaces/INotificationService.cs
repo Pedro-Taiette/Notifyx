@@ -1,5 +1,10 @@
-﻿namespace Notifyx.Application.Interfaces;
+﻿using Notifyx.Application.Contracts;
 
-internal interface INotificationService
+namespace Notifyx.Application.Interfaces;
+
+public interface INotificationService
 {
+    Task<NotificationResponse> SendNotificationAsync(NotificationEvent notificationEvent, CancellationToken cancellationToken = default);
+    Task<IReadOnlyList<NotificationResponse>> GetUserNotificationsAsync(Guid userId, CancellationToken cancellationToken = default);
+    Task MarkAsReadAsync(Guid notificationId, CancellationToken cancellationToken = default);
 }

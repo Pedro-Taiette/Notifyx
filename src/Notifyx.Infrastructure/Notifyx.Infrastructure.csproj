@@ -1,6 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="EasyNetQ" Version="8.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Notifyx.Domain\Notifyx.Domain.csproj" />
     <ProjectReference Include="..\Notifyx.Application\Notifyx.Application.csproj" />
   </ItemGroup>

@@ -1,5 +1,9 @@
 ﻿namespace Notifyx.Domain.Enums;
 
-internal enum NotificationType
+public enum NotificationType
 {
+    Email,
+    Push, 
+    Sms, 
+    InApp
 }
