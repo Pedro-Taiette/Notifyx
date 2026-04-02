@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Notifyx.Application/Notifyx.Application.csproj" />
+    <Project Path="src/Notifyx.Domain/Notifyx.Domain.csproj" />
+    <Project Path="src/Notifyx.Infrastructure/Notifyx.Infrastructure.csproj" />
+    <Project Path="src/Notifyx.WebApi/Notifyx.WebApi.csproj" />
+  </Folder>
+</Solution>
