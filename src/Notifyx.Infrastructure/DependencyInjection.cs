@@ -1,6 +1,5 @@
 ﻿namespace Notifyx.Infrastructure;
 
-public class Class1
+internal class DependencyInjection
 {
-
 }
