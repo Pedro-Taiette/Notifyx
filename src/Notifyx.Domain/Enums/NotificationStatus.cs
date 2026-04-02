@@ -1,5 +1,9 @@
 ﻿namespace Notifyx.Domain.Enums;
 
-internal enum NotificationStatus
+public enum NotificationStatus
 {
+    Pending, 
+    Sent,
+    Failed,
+    Read
 }

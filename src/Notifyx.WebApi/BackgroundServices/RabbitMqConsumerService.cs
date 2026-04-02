@@ -1,5 +1,11 @@
-﻿namespace Notifyx.WebApi.BackgroundServices;
+﻿using Notifyx.Infrastructure.Messaging;
 
-public class RabbitMqConsumerService
+namespace Notifyx.WebApi.BackgroundServices;
+
+public class RabbitMqConsumerService(NotificationEventConsumer consumer) : BackgroundService
 {
+    protected override Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        throw new NotImplementedException();
+    }
 }
