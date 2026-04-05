@@ -10,6 +10,11 @@ internal class NotificationService : INotificationService
         throw new NotImplementedException();
     }
 
+    public Task<IReadOnlyList<NotificationResponse>> GetUserUnreadNotificationsAsync(Guid userId, CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task MarkAsReadAsync(Guid notificationId, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();

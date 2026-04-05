@@ -1,27 +1,34 @@
-﻿using Notifyx.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Notifyx.Domain.Entities;
 using Notifyx.Domain.Interfaces;
 
 namespace Notifyx.Infrastructure.Persistence.Repository;
 
-internal class NotificationRepository : INotificationRepository
+internal class NotificationRepository(NotificationDBContext context) : INotificationRepository
 {
-    public Task AddAsync(Notification notification, CancellationToken cancellationToken = default)
+    public async Task AddAsync(Notification notification, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        await context.Notifications.AddAsync(notification, cancellationToken);
+        await context.SaveChangesAsync(cancellationToken);
     }
 
-    public Task<Notification?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<Notification?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await context.Notifications
+            .FirstOrDefaultAsync(n => n.Id == id, cancellationToken);
     }
 
-    public Task<IReadOnlyList<Notification>> GetByUserIdAsync(Guid userId, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<Notification>> GetByUserIdAsync(Guid userId, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await context.Notifications
+            .Where(n => n.UserId == userId)
+            .OrderByDescending(n => n.CreatedAt)
+            .ToListAsync(cancellationToken);
     }
 
-    public Task UpdateAsync(Notification notification, CancellationToken cancellationToken = default)
+    public async Task UpdateAsync(Notification notification, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        context.Notifications.Update(notification);
+        await context.SaveChangesAsync(cancellationToken);
     }
 }
