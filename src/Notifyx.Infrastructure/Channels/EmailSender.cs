@@ -6,7 +6,7 @@ namespace Notifyx.Infrastructure.Channels;
 
 internal class EmailSender : INotificationChannelSender
 {
-    public NotificationType Channel => throw new NotImplementedException();
+    public NotificationType Channel => NotificationType.Email;
 
     public Task<bool> SendAsync(Notification notification, CancellationToken cancellationToken = default)
     {
