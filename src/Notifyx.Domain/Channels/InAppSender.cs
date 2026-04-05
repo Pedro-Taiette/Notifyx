@@ -6,7 +6,7 @@ namespace Notifyx.Infrastructure.Channels;
 
 internal class InAppSender : INotificationChannelSender
 {
-    public NotificationType Channel => throw new NotImplementedException();
+    public NotificationType Channel => NotificationType.InApp;
 
     public Task<bool> SendAsync(Notification notification, CancellationToken cancellationToken = default)
     {
@@ -16,7 +16,7 @@ internal class InAppSender : INotificationChannelSender
             $"{notification.Body}\n");
 
         notification.MarkAsSent();
-        notification.MarkAsRead();
+        //notification.MarkAsRead();
 
         // will always succeed
         return Task.FromResult(true);

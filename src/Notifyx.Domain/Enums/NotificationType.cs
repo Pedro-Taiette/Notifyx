@@ -2,8 +2,8 @@
 
 public enum NotificationType
 {
+    All, 
     Email,
-    Push, 
     Sms, 
     InApp
 }
