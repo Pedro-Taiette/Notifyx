@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Notifyx.Application.Contracts;
 using Notifyx.Application.Interfaces;
 
@@ -6,31 +6,33 @@ namespace Notifyx.WebApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class NotificationController(INotificationService notificationService): ControllerBase
+public class NotificationController(INotificationService notificationService) : ControllerBase
 {
-    [HttpGet("[action]/{userId : Guid}")]
-    public IActionResult GetUserNotifications(Guid userId)
+    [HttpGet("[action]/{userId:Guid}")]
+    public async Task<IActionResult> GetUserNotifications(Guid userId, CancellationToken cancellationToken)
     {
-        var notifications = notificationService.GetUserNotificationsAsync(userId);
+        var notifications = await notificationService.GetUserNotificationsAsync(userId, cancellationToken);
         return Ok(notifications);
     }
-    [HttpGet("[action]/{userId : Guid}")]
-    public IActionResult GetUserUnreadNotifications(Guid userId)
+
+    [HttpGet("[action]/{userId:Guid}")]
+    public async Task<IActionResult> GetUserUnreadNotifications(Guid userId, CancellationToken cancellationToken)
     {
-        var notifications = notificationService.GetUserUnreadNotificationsAsync(userId);
+        var notifications = await notificationService.GetUserUnreadNotificationsAsync(userId, cancellationToken);
         return Ok(notifications);
     }
-    [HttpGet("[action]/{notificationId : Guid}")]
-    public IActionResult MarkAsRead(Guid notificationId)
+
+    [HttpPatch("[action]/{notificationId:Guid}")]
+    public async Task<IActionResult> MarkAsRead(Guid notificationId, CancellationToken cancellationToken)
     {
-        notificationService.MarkAsReadAsync(notificationId);
+        await notificationService.MarkAsReadAsync(notificationId, cancellationToken);
         return NoContent();
     }
+
     [HttpPost]
-    public IActionResult SendNotification([FromBody]NotificationEvent notificationEvent)
+    public async Task<IActionResult> SendNotification([FromBody] NotificationEvent notificationEvent, CancellationToken cancellationToken)
     {
-        notificationService.SendNotificationAsync(notificationEvent);
-        return NoContent();
+        var result = await notificationService.SendNotificationAsync(notificationEvent, cancellationToken);
+        return CreatedAtAction(nameof(GetUserNotifications), new { userId = result.Id }, result);
     }
-    // Post Manual Endpoint to trigger notification for testing
 }

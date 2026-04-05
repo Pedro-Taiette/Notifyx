@@ -7,6 +7,6 @@ public record NotificationEvent(
     string Title,
     string Body,
     NotificationType Type,
-    string SouceService,
+    string SourceService,
     string? Metadata = null
 );
