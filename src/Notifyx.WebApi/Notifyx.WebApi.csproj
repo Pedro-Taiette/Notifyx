@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.3.9" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.4" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.5.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -16,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\contracts\Notifyx.Contracts\Notifyx.Contracts.csproj" />
     <ProjectReference Include="..\Notifyx.Application\Notifyx.Application.csproj" />
     <ProjectReference Include="..\Notifyx.Infrastructure\Notifyx.Infrastructure.csproj" />
   </ItemGroup>

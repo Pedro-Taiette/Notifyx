@@ -1,6 +1,7 @@
 using Notifyx.Application;
 using Notifyx.Infrastructure;
 using Notifyx.WebApi.BackgroundServices;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +19,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();
+app.MapControllers();
 
 app.Run();

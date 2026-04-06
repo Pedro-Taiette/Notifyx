@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/contracts/">
+    <Project Path="contracts/Notifyx.Contracts/Notifyx.Contracts.csproj" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/Notifyx.Application/Notifyx.Application.csproj" />
     <Project Path="src/Notifyx.Domain/Notifyx.Domain.csproj" />

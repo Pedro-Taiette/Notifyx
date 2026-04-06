@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Notifyx.Application.Contracts;
+using Notifyx.Contracts;
 using Notifyx.Application.Interfaces;
 
 namespace Notifyx.WebApi.Controllers;

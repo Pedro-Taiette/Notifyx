@@ -1,5 +1,5 @@
-﻿using Notifyx.Domain.Entities;
-using Notifyx.Domain.Enums;
+﻿using Notifyx.Contracts;
+using Notifyx.Domain.Entities;
 
 namespace Notifyx.Domain.Interfaces;
 

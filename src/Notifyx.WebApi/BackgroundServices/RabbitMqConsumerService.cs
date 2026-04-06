@@ -1,11 +1,16 @@
-﻿using Notifyx.Infrastructure.Messaging;
+using EasyNetQ;
+using Notifyx.Contracts;
+using Notifyx.Infrastructure.Messaging;
 
 namespace Notifyx.WebApi.BackgroundServices;
 
-public class RabbitMqConsumerService(NotificationEventConsumer consumer) : BackgroundService
+public class RabbitMqConsumerService(IBus bus, NotificationEventConsumer consumer) : BackgroundService
 {
-    protected override Task ExecuteAsync(CancellationToken stoppingToken)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        throw new NotImplementedException();
+        await bus.PubSub.SubscribeAsync<NotificationEvent>(
+            subscriptionId: "notifyx",
+            onMessage: msg => consumer.ConsumeAsync(msg, stoppingToken),
+            cancellationToken: stoppingToken);
     }
 }

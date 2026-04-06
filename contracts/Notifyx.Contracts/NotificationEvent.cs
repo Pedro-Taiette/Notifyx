@@ -1,6 +1,4 @@
-﻿using Notifyx.Domain.Enums;
-
-namespace Notifyx.Application.Contracts;
+namespace Notifyx.Contracts;
 
 public record NotificationEvent(
     Guid UserId,

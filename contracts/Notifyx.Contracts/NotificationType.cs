@@ -1,9 +1,9 @@
-﻿namespace Notifyx.Domain.Enums;
+namespace Notifyx.Contracts;
 
 public enum NotificationType
 {
-    All, 
+    All,
     Email,
-    Sms, 
+    Sms,
     InApp
 }

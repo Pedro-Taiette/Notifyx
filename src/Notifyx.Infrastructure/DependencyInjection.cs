@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EasyNetQ;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Notifyx.Domain.Interfaces;
+using Notifyx.Infrastructure.Channels;
 using Notifyx.Infrastructure.Messaging;
 using Notifyx.Infrastructure.Persistence;
 using Notifyx.Infrastructure.Persistence.Repository;
@@ -17,11 +19,17 @@ public static class DependencyInjection
 
         services.AddScoped<INotificationRepository, NotificationRepository>();
 
-        // EasyNetQ configuration
+        services.AddEasyNetQ(configuration["RabbitMQ"]!);
 
         services.AddSingleton<NotificationEventConsumer>();
 
-        // Add Channels
+        services.AddScoped<EmailSender>();
+        services.AddScoped<SmsSender>();
+        services.AddScoped<InAppSender>();
+        services.AddScoped<INotificationChannelSender>(sp => sp.GetRequiredService<EmailSender>());
+        services.AddScoped<INotificationChannelSender>(sp => sp.GetRequiredService<SmsSender>());
+        services.AddScoped<INotificationChannelSender>(sp => sp.GetRequiredService<InAppSender>());
+        services.AddScoped<INotificationChannelSender, AllSender>();
 
         return services;
     }

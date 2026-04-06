@@ -1,6 +1,8 @@
 using Notifyx.Application.Contracts;
 using Notifyx.Application.Interfaces;
+using Notifyx.Contracts;
 using Notifyx.Domain.Entities;
+using Notifyx.Domain.Enums;
 using Notifyx.Domain.Interfaces;
 
 namespace Notifyx.Application.Services;
@@ -50,7 +52,7 @@ internal class NotificationService(
     {
         var notifications = await repository.GetByUserIdAsync(userId, cancellationToken);
         return notifications
-            .Where(n => n.Status != Domain.Enums.NotificationStatus.Read)
+            .Where(n => n.Status != NotificationStatus.Read)
             .Select(ToResponse)
             .ToList();
     }
