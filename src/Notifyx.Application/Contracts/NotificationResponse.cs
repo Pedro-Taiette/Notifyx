@@ -1,4 +1,5 @@
-﻿using Notifyx.Domain.Enums;
+﻿using Notifyx.Contracts;
+using Notifyx.Domain.Enums;
 
 namespace Notifyx.Application.Contracts;
 

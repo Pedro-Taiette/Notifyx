@@ -8,6 +8,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\contracts\Notifyx.Contracts\Notifyx.Contracts.csproj" />
     <ProjectReference Include="..\Notifyx.Domain\Notifyx.Domain.csproj" />
     <ProjectReference Include="..\Notifyx.Application\Notifyx.Application.csproj" />
   </ItemGroup>

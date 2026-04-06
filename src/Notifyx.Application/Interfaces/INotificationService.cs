@@ -1,4 +1,5 @@
 ﻿using Notifyx.Application.Contracts;
+using Notifyx.Contracts;
 
 namespace Notifyx.Application.Interfaces;
 
