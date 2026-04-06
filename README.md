@@ -22,7 +22,13 @@ dotnet ef migrations add InitialCreate --project ../Notifyx.Infrastructure
 dotnet ef database update
 ```
 
-**3. Rodar a API**
+**3. Configurar Mailtrap para simular email**
+1. Crie sua conta em mailtrap.io.
+2. Vá em Inboxes > Selecione sua Inbox > SMTP Settings.
+3. Copie seu Username e Password.
+4. No projeto Notifyx.WebApi, adicione essas credenciais aos seus User Secrets/AppSettings.Development.Json
+
+**4. Rodar a API**
 ```bash
 dotnet run --project src/Notifyx.WebApi
 ```
