@@ -56,6 +56,14 @@ internal class NotificationService(
             .Select(ToResponse)
             .ToList();
     }
+    public async Task<IReadOnlyList<NotificationResponse>> GetUserFailedNotificationsAsync(Guid userId, CancellationToken cancellationToken = default)
+    {
+        var notifications = await repository.GetByUserIdAsync(userId, cancellationToken);
+        return notifications
+            .Where(n => n.Status.Equals(NotificationStatus.Failed))
+            .Select(ToResponse)
+            .ToList();
+    }
 
     public async Task MarkAsReadAsync(Guid notificationId, CancellationToken cancellationToken = default)
     {
