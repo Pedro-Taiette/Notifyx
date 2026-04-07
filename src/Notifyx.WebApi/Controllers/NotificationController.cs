@@ -35,4 +35,11 @@ public class NotificationController(INotificationService notificationService) : 
         var result = await notificationService.SendNotificationAsync(notificationEvent, cancellationToken);
         return CreatedAtAction(nameof(GetUserNotifications), new { userId = result.Id }, result);
     }
+
+    [HttpGet("[action]/{userId:Guid}")]
+    public async Task<IActionResult> GetUserFailedNotifications(Guid userId, CancellationToken cancellationToken)
+    {
+        await notificationService.GetUserFailedNotificationsAsync(userId, cancellationToken);
+        return NoContent();
+    }
 }
